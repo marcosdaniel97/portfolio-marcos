@@ -1,47 +1,7 @@
 ---
-// NOTE: project data lives inline for Phase 2. Phase 3 (tasks 3.1/3.3) moves
-// this array into src/data/projects.ts, importing the same Project type from
-// src/types/project.ts, and this component switches to importing `projects`
-// from there instead of declaring it locally.
 import TerminalPrompt from '../ui/TerminalPrompt.astro';
 import ProjectCard from '../ui/ProjectCard.astro';
-import type { Project } from '../../types/project';
-
-const projects: readonly Project[] = [
-  {
-    id: 'fixture-mundial-2026',
-    name: 'Fixture Mundial 2026',
-    description:
-      'Aplicación para consultar el fixture del Mundial 2026: partidos, sedes y resultados en un solo lugar.',
-    metrics: [
-      { label: 'Requisitos funcionales relevados', value: '35' },
-      { label: 'Endpoints de API', value: '12' },
-    ],
-    tags: ['Angular', 'TypeScript'],
-  },
-  {
-    id: 'gestion-pedidos-pizzeria',
-    name: 'Gestión de Pedidos — Pizzería',
-    description:
-      'Sistema académico de gestión de pedidos para una pizzería, modelado con UML y estimado con FPA y COCOMO II.',
-    metrics: [
-      { label: 'Casos de uso modelados', value: '9' },
-      { label: 'Módulos integrados', value: '3' },
-    ],
-    tags: ['Java', 'Spring Boot', 'MySQL'],
-  },
-  {
-    id: 'chatbot-whatsapp-ia',
-    name: 'Chatbot de WhatsApp con IA',
-    description:
-      'Bot conversacional para WhatsApp que automatiza pedidos y consultas frecuentes de la pizzería usando IA.',
-    metrics: [
-      { label: 'Mensajes procesados por día', value: '500+' },
-      { label: 'Tiempo de respuesta promedio', value: '<2s' },
-    ],
-    tags: ['Python', 'FastAPI', 'OpenAI API'],
-  },
-];
+import { projects } from '../../data/projects';
 ---
 
 <section id="projects" class="section reveal" aria-labelledby="projects-heading">
