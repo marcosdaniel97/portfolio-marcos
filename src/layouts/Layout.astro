@@ -1,0 +1,46 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Marcos Daniel Casimiro — Estudiante de Ingeniería en Software',
+  description = 'Portfolio de Marcos Daniel Casimiro, estudiante de Ingeniería en Software en la UNJu. Proyectos, formación y contacto.',
+} = Astro.props;
+
+// NOTE: `site` is not configured yet (unknown until first Vercel deploy).
+// canonical/og:url/og:image are relative placeholders, backfilled in Phase 3
+// once astro.config.mjs `site` is set to the assigned *.vercel.app subdomain.
+---
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:locale" content="es_AR" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-fira-code" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
