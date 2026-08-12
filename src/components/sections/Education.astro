@@ -1,0 +1,38 @@
+---
+import TerminalPrompt from '../ui/TerminalPrompt.astro';
+---
+
+<section id="education" class="section reveal" aria-labelledby="education-heading">
+  <h2 id="education-heading" class="section__heading">
+    <TerminalPrompt glyph=">">education.log</TerminalPrompt>
+  </h2>
+
+  <p class="education__entry">
+    <span class="education__degree">Ingeniería en Software</span>
+    <span class="education__institution">Universidad Nacional de Jujuy (Argentina)</span>
+    <span class="education__dates">[ 2017 - Presente ]</span>
+  </p>
+</section>
+
+<style>
+  .education__entry {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+  }
+
+  .education__degree {
+    font-size: var(--fs-400);
+    font-weight: 700;
+  }
+
+  .education__institution {
+    color: var(--color-text-muted);
+  }
+
+  .education__dates {
+    color: var(--color-accent);
+    font-size: var(--fs-200);
+  }
+</style>

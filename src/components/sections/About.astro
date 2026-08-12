@@ -1,0 +1,36 @@
+---
+import TerminalPrompt from '../ui/TerminalPrompt.astro';
+---
+
+<section id="about" class="section reveal" aria-labelledby="about-heading">
+  <h2 id="about-heading" class="section__heading">
+    <TerminalPrompt glyph="$">cat about.txt</TerminalPrompt>
+  </h2>
+
+  <div class="about__content">
+    <p>
+      Estoy estudiando Ingeniería en Software y me interesa el ciclo completo de desarrollo: desde el relevamiento de
+      requisitos y el modelado UML hasta la implementación final. Prefiero entender bien el problema antes de
+      escribir la primera línea de código.
+    </p>
+    <p>
+      Del lado del frontend trabajo con Angular y TypeScript, armando interfaces prolijas y fáciles de mantener.
+      También desarrollé sistemas de gestión completos, como una plataforma para administrar pedidos de una
+      pizzería, con lógica de negocio real y no solo una maqueta.
+    </p>
+    <p>
+      En los últimos tiempos me metí de lleno en automatización con IA: construí un chatbot de WhatsApp que atiende
+      consultas y pedidos automáticamente, y es un área en la que quiero seguir profundizando.
+    </p>
+  </div>
+</section>
+
+<style>
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 60rem;
+    color: var(--color-text-primary);
+  }
+</style>

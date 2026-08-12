@@ -1,0 +1,169 @@
+---
+// Rendering contract (design obs#40 Interfaces / Data Flow — must not be
+// simplified): repoUrl -> "Repositorio" link, demoUrl -> "Ver demo" link.
+// 0, 1, or 2 buttons. When neither is present the whole actions container is
+// omitted (not rendered empty) so flex gap/padding never produce a phantom
+// row, and the card's min-height never depends on the actions row existing.
+// Never emit href="#", disabled, or aria-disabled.
+import type { Project } from '../../types/project';
+import TagPill from './TagPill.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const hasActions = Boolean(project.repoUrl ?? project.demoUrl);
+---
+
+<article class="project-card">
+  <h3 class="project-card__name">{project.name}</h3>
+  <p class="project-card__description">{project.description}</p>
+
+  <dl class="project-card__metrics">
+    {
+      project.metrics.map((metric) => (
+        <div class="project-card__metric">
+          <dt class="project-card__metric-label">{metric.label}</dt>
+          <dd class="project-card__metric-value">{metric.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <ul class="project-card__tags" aria-label={`Tecnologías usadas en ${project.name}`}>
+    {
+      project.tags.map((tag) => (
+        <li>
+          <TagPill>{tag}</TagPill>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    hasActions && (
+      <div class="project-card__actions">
+        {project.repoUrl && (
+          <a
+            class="project-card__action"
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Repositorio de ${project.name}`}
+          >
+            Repositorio
+          </a>
+        )}
+        {project.demoUrl && (
+          <a
+            class="project-card__action project-card__action--primary"
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Ver demo de ${project.name}`}
+          >
+            Ver demo
+          </a>
+        )}
+      </div>
+    )
+  }
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 100%;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+  }
+
+  .project-card__name {
+    font-size: var(--fs-500);
+    font-weight: 700;
+  }
+
+  .project-card__description {
+    color: var(--color-text-muted);
+  }
+
+  .project-card__metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+  }
+
+  .project-card__metric {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-2);
+  }
+
+  .project-card__metric-label {
+    color: var(--color-text-muted);
+  }
+
+  .project-card__metric-value {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+  }
+
+  .project-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+
+  .project-card__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .project-card__action:hover,
+  .project-card__action:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .project-card__action--primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-base);
+  }
+
+  .project-card__action--primary:hover,
+  .project-card__action--primary:focus-visible {
+    background-color: var(--color-accent-dim);
+    border-color: var(--color-accent-dim);
+    color: var(--color-bg-base);
+  }
+</style>

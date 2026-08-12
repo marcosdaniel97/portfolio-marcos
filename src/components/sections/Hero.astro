@@ -1,0 +1,169 @@
+---
+import TerminalPrompt from '../ui/TerminalPrompt.astro';
+import TagPill from '../ui/TagPill.astro';
+
+const stack = ['Angular', 'TypeScript', 'Java', 'Python', 'SQL'];
+const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__inner">
+    <p class="hero__prompt">
+      <TerminalPrompt glyph=">">whoami</TerminalPrompt>
+    </p>
+
+    <h1 id="hero-heading" class="hero__name">Marcos Daniel Casimiro</h1>
+
+    <p class="hero__subtitle-line">
+      <span class="hero__subtitle">Estudiante de Ingeniería en Software</span>
+    </p>
+
+    <ul class="hero__stack" aria-label="Stack principal">
+      {
+        stack.map((tech) => (
+          <li>
+            <TagPill>{tech}</TagPill>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hero__ctas">
+      <a class="hero__cta hero__cta--primary" href="#projects">Ver proyectos</a>
+      <a class="hero__cta hero__cta--secondary" href="#contact">Contacto</a>
+    </div>
+
+    <p class="hero__learning">
+      <TerminalPrompt glyph="$">currently_learning: [{currentlyLearning.join(', ')}]</TerminalPrompt>
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    max-width: 48rem;
+  }
+
+  .hero__prompt {
+    color: var(--color-text-muted);
+    font-size: var(--fs-200);
+  }
+
+  .hero__name {
+    font-size: var(--fs-800);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .hero__subtitle-line {
+    font-size: var(--fs-400);
+    color: var(--color-text-muted);
+  }
+
+  .hero__subtitle {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--color-accent);
+    font-family: var(--font-mono);
+    width: 36ch;
+    animation:
+      hero-typing 2.4s steps(36, end) 0.3s both,
+      hero-caret 750ms step-end infinite;
+  }
+
+  @keyframes hero-typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 36ch;
+    }
+  }
+
+  @keyframes hero-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: var(--color-accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__subtitle {
+      width: 36ch;
+      animation: none;
+      border-right-color: transparent;
+    }
+  }
+
+  .hero__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .hero__cta--primary {
+    background-color: var(--color-accent);
+    color: var(--color-bg-base);
+  }
+
+  .hero__cta--primary:hover,
+  .hero__cta--primary:focus-visible {
+    background-color: var(--color-accent-dim);
+  }
+
+  .hero__cta--secondary {
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+  }
+
+  .hero__cta--secondary:hover,
+  .hero__cta--secondary:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .hero__learning {
+    color: var(--color-text-muted);
+    font-size: var(--fs-100);
+  }
+</style>

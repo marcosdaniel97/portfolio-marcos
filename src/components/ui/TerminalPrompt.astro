@@ -1,0 +1,23 @@
+---
+// Renders a terminal-style prompt glyph followed by command text.
+// The glyph is purely decorative, so it is hidden from assistive tech.
+interface Props {
+  glyph: string;
+}
+
+const { glyph } = Astro.props;
+---
+
+<span class="terminal-prompt">
+  <span class="terminal-prompt__glyph" aria-hidden="true">{glyph}</span> <slot />
+</span>
+
+<style>
+  .terminal-prompt {
+    font-family: var(--font-mono);
+  }
+
+  .terminal-prompt__glyph {
+    color: var(--color-accent);
+  }
+</style>
