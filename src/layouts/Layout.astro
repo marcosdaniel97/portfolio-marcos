@@ -13,9 +13,7 @@ const {
   description = 'Portfolio de Marcos Daniel Casimiro, estudiante de Ingeniería en Software en la UNJu. Proyectos, formación y contacto.',
 } = Astro.props;
 
-// NOTE: `site` is not configured yet (unknown until first Vercel deploy).
-// canonical/og:url/og:image are relative placeholders, backfilled in Phase 3
-// once astro.config.mjs `site` is set to the assigned *.vercel.app subdomain.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="es-AR">
@@ -26,13 +24,12 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href="/" />
+    <link rel="canonical" href={canonicalURL} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="/" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="es_AR" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
