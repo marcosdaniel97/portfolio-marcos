@@ -1,42 +1,107 @@
-// Seeded v1 project data (design obs#40 Decision 5 / Interfaces section).
-// `repoUrl`/`demoUrl` are intentionally omitted for all 3 entries — no real
-// links exist yet. Per spec obs#39 (portfolio-project-data domain), this
-// means every ProjectCard renders zero action buttons, which is correct
-// behavior, not a defect, pending a follow-up data-entry task.
+// Real project data sourced from Marcos Daniel Casimiro's public GitHub
+// repositories. Descriptions and metrics reflect actual technical facts —
+// no fabricated statistics.
 import type { Project } from '../types/project';
 
 export const projects: readonly Project[] = [
   {
-    id: 'fixture-mundial-2026',
-    name: 'Fixture Mundial 2026',
+    id: 'nextjs-pokemon-dashboard',
+    name: 'nextjs-pokemon-dashboard',
     description:
-      'Aplicación para consultar el fixture del Mundial 2026: partidos, sedes y resultados en un solo lugar.',
+      'Dashboard interactivo de Pokémon hecho con Next.js: consume una API externa y muestra stats, tipos y detalles con una interfaz responsive y optimizada.',
+    tags: ['Next.js', 'TypeScript', 'API REST'],
     metrics: [
-      { label: 'Requisitos funcionales relevados', value: '35' },
-      { label: 'Endpoints de API', value: '12' },
+      { label: 'Deploy', value: 'Vercel' },
+      { label: 'Data', value: 'PokeAPI' },
     ],
-    tags: ['Angular', 'TypeScript'],
+    repoUrl: 'https://github.com/marcosdaniel97/nextjs-pokemon-dashboard',
+    demoUrl: 'http://pokemon-dashboard-flame.vercel.app',
   },
   {
-    id: 'gestion-pedidos-pizzeria',
-    name: 'Gestión de Pedidos — Pizzería',
+    id: 'admin-todo-app',
+    name: 'Admin-Todo-App',
     description:
-      'Sistema académico de gestión de pedidos para una pizzería, modelado con UML y estimado con FPA y COCOMO II.',
+      'Gestor de tareas con autenticación vía GitHub y Google (AuthJS), relación de tareas por usuario, consumo de una API RESTful propia y carrito con cookies. Combina SSR y CSR.',
+    tags: ['Next.js', 'AuthJS', 'TypeScript'],
     metrics: [
-      { label: 'Casos de uso modelados', value: '9' },
-      { label: 'Módulos integrados', value: '3' },
+      { label: 'Auth', value: 'GitHub + Google' },
+      { label: 'Render', value: 'SSR + CSR' },
     ],
-    tags: ['Java', 'Spring Boot', 'MySQL'],
+    repoUrl: 'https://github.com/marcosdaniel97/Admin-Todo-App',
+    demoUrl: 'https://admin-todo-mocha.vercel.app/',
   },
   {
-    id: 'chatbot-whatsapp-ia',
-    name: 'Chatbot de WhatsApp con IA',
+    id: 'teslo-shop-next',
+    name: 'teslo-shop-next',
     description:
-      'Bot conversacional para WhatsApp que automatiza pedidos y consultas frecuentes de la pizzería usando IA.',
+      'E-commerce fullstack desarrollado con Next.js: autenticación, gestión de productos y pagos integrados.',
+    tags: ['Next.js', 'TypeScript', 'Pagos'],
     metrics: [
-      { label: 'Mensajes procesados por día', value: '500+' },
-      { label: 'Tiempo de respuesta promedio', value: '<2s' },
+      { label: 'Auth', value: 'Sesiones + roles' },
+      { label: 'Pagos', value: 'Integrados' },
     ],
-    tags: ['Python', 'FastAPI', 'OpenAI API'],
+    repoUrl: 'https://github.com/marcosdaniel97/teslo-shop-next',
+    demoUrl: 'https://tienda-mc-shop.vercel.app',
+  },
+  {
+    id: 'todo-with-sdd',
+    name: 'todo-with-sdd',
+    description:
+      'Todo app construida siguiendo Spec-Driven Development (metodología Openspec): primero specs y tareas, después el código.',
+    tags: ['TypeScript', 'SDD'],
+    metrics: [{ label: 'Metodología', value: 'Spec-Driven Dev' }],
+    repoUrl: 'https://github.com/marcosdaniel97/todo-with-sdd',
+  },
+  {
+    id: 'react-mern-backend',
+    name: 'React-MERN-backend',
+    description:
+      'Backend de una app de calendario (stack MERN): CRUD de eventos y usuarios, manejo de estado con Redux y autenticación JWT.',
+    tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+    metrics: [
+      { label: 'Auth', value: 'JWT' },
+      { label: 'Estado', value: 'Redux' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/React-MERN-backend',
+    demoUrl: 'https://react-mern-backend-ya9f.onrender.com',
+  },
+  {
+    id: 'gifs-app',
+    name: 'gifs-app',
+    description:
+      'Buscador de GIFs que consume la API de Giphy, con testing unitario usando Vitest y React Testing Library.',
+    tags: ['React', 'Vitest', 'Testing Library'],
+    metrics: [
+      { label: 'Testing', value: 'Vitest + RTL' },
+      { label: 'API', value: 'Giphy' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/gifs-app',
+    demoUrl: 'https://soft-kataifi-dcc245.netlify.app/',
+  },
+  {
+    id: 'teslo-shop-react',
+    name: 'teslo-shop-react',
+    description:
+      'E-commerce en React usando TanStack para el manejo de datos, Zustand para estado global y autenticación JWT.',
+    tags: ['React', 'TanStack', 'Zustand'],
+    metrics: [
+      { label: 'Data fetching', value: 'TanStack Query' },
+      { label: 'Estado', value: 'Zustand' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/teslo-shop-react',
+    demoUrl: 'https://teslo-shop-reactmc.netlify.app/',
+  },
+  {
+    id: 'heroes-app-githubpages',
+    name: 'heroes-app-githubpages',
+    description:
+      'SPA en React que consume una API hecha en NestJS, con TanStack Query, React Router y componentes shadcn/ui.',
+    tags: ['React', 'NestJS', 'TanStack Query'],
+    metrics: [
+      { label: 'API', value: 'NestJS' },
+      { label: 'Data fetching', value: 'TanStack Query' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/heroes-app-githubpages',
+    demoUrl: 'https://marcosdaniel97.github.io/heroes-app-githubpages/',
   },
 ];

@@ -12,7 +12,7 @@ export interface Project {
   readonly id: string;
   readonly name: string;
   readonly description: string;
-  readonly metrics: readonly [ProjectMetric, ProjectMetric];
+  readonly metrics?: readonly ProjectMetric[];
   readonly tags: readonly string[];
   readonly repoUrl?: string;
   readonly demoUrl?: string;

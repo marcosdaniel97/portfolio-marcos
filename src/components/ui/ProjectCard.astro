@@ -14,22 +14,25 @@ interface Props {
 
 const { project } = Astro.props;
 const hasActions = Boolean(project.repoUrl ?? project.demoUrl);
+const hasMetrics = Boolean(project.metrics && project.metrics.length > 0);
 ---
 
 <article class="project-card">
   <h3 class="project-card__name">{project.name}</h3>
   <p class="project-card__description">{project.description}</p>
 
-  <dl class="project-card__metrics">
-    {
-      project.metrics.map((metric) => (
-        <div class="project-card__metric">
-          <dt class="project-card__metric-label">{metric.label}</dt>
-          <dd class="project-card__metric-value">{metric.value}</dd>
-        </div>
-      ))
-    }
-  </dl>
+  {
+    hasMetrics && (
+      <dl class="project-card__metrics">
+        {project.metrics!.map((metric) => (
+          <div class="project-card__metric">
+            <dt class="project-card__metric-label">{metric.label}</dt>
+            <dd class="project-card__metric-value">{metric.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
 
   <ul class="project-card__tags" aria-label={`Tecnologías usadas en ${project.name}`}>
     {
