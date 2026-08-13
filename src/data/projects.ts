@@ -5,32 +5,6 @@ import type { Project } from '../types/project';
 
 export const projects: readonly Project[] = [
   {
-    id: 'nextjs-pokemon-dashboard',
-    name: 'nextjs-pokemon-dashboard',
-    description:
-      'Dashboard interactivo de Pokémon hecho con Next.js: consume una API externa y muestra stats, tipos y detalles con una interfaz responsive y optimizada.',
-    tags: ['Next.js', 'TypeScript', 'API REST'],
-    metrics: [
-      { label: 'Deploy', value: 'Vercel' },
-      { label: 'Data', value: 'PokeAPI' },
-    ],
-    repoUrl: 'https://github.com/marcosdaniel97/nextjs-pokemon-dashboard',
-    demoUrl: 'http://pokemon-dashboard-flame.vercel.app',
-  },
-  {
-    id: 'admin-todo-app',
-    name: 'Admin-Todo-App',
-    description:
-      'Gestor de tareas con autenticación vía GitHub y Google (AuthJS), relación de tareas por usuario, consumo de una API RESTful propia y carrito con cookies. Combina SSR y CSR.',
-    tags: ['Next.js', 'AuthJS', 'TypeScript'],
-    metrics: [
-      { label: 'Auth', value: 'GitHub + Google' },
-      { label: 'Render', value: 'SSR + CSR' },
-    ],
-    repoUrl: 'https://github.com/marcosdaniel97/Admin-Todo-App',
-    demoUrl: 'https://admin-todo-mocha.vercel.app/',
-  },
-  {
     id: 'teslo-shop-next',
     name: 'teslo-shop-next',
     description:
@@ -42,41 +16,6 @@ export const projects: readonly Project[] = [
     ],
     repoUrl: 'https://github.com/marcosdaniel97/teslo-shop-next',
     demoUrl: 'https://tienda-mc-shop.vercel.app',
-  },
-  {
-    id: 'todo-with-sdd',
-    name: 'todo-with-sdd',
-    description:
-      'Todo app construida siguiendo Spec-Driven Development (metodología Openspec): primero specs y tareas, después el código.',
-    tags: ['TypeScript', 'SDD'],
-    metrics: [{ label: 'Metodología', value: 'Spec-Driven Dev' }],
-    repoUrl: 'https://github.com/marcosdaniel97/todo-with-sdd',
-  },
-  {
-    id: 'react-mern-backend',
-    name: 'React-MERN-backend',
-    description:
-      'Backend de una app de calendario (stack MERN): CRUD de eventos y usuarios, manejo de estado con Redux y autenticación JWT.',
-    tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
-    metrics: [
-      { label: 'Auth', value: 'JWT' },
-      { label: 'Estado', value: 'Redux' },
-    ],
-    repoUrl: 'https://github.com/marcosdaniel97/React-MERN-backend',
-    demoUrl: 'https://react-mern-backend-ya9f.onrender.com',
-  },
-  {
-    id: 'gifs-app',
-    name: 'gifs-app',
-    description:
-      'Buscador de GIFs que consume la API de Giphy, con testing unitario usando Vitest y React Testing Library.',
-    tags: ['React', 'Vitest', 'Testing Library'],
-    metrics: [
-      { label: 'Testing', value: 'Vitest + RTL' },
-      { label: 'API', value: 'Giphy' },
-    ],
-    repoUrl: 'https://github.com/marcosdaniel97/gifs-app',
-    demoUrl: 'https://soft-kataifi-dcc245.netlify.app/',
   },
   {
     id: 'teslo-shop-react',
@@ -92,6 +31,19 @@ export const projects: readonly Project[] = [
     demoUrl: 'https://teslo-shop-reactmc.netlify.app/',
   },
   {
+    id: 'react-mern-backend',
+    name: 'React-MERN-backend',
+    description:
+      'Backend de una app de calendario (stack MERN): CRUD de eventos y usuarios, manejo de estado con Redux y autenticación JWT.',
+    tags: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+    metrics: [
+      { label: 'Auth', value: 'JWT' },
+      { label: 'Estado', value: 'Redux' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/React-MERN-backend',
+    demoUrl: 'https://react-mern-backend-ya9f.onrender.com',
+  },
+  {
     id: 'heroes-app-githubpages',
     name: 'heroes-app-githubpages',
     description:
@@ -103,5 +55,53 @@ export const projects: readonly Project[] = [
     ],
     repoUrl: 'https://github.com/marcosdaniel97/heroes-app-githubpages',
     demoUrl: 'https://marcosdaniel97.github.io/heroes-app-githubpages/',
+  },
+  {
+    id: 'admin-todo-app',
+    name: 'Admin-Todo-App',
+    description:
+      'Gestor de tareas con autenticación vía GitHub y Google (AuthJS), relación de tareas por usuario, consumo de una API RESTful propia y carrito con cookies. Combina SSR y CSR.',
+    tags: ['Next.js', 'AuthJS', 'TypeScript'],
+    metrics: [
+      { label: 'Auth', value: 'GitHub + Google' },
+      { label: 'Render', value: 'SSR + CSR' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/Admin-Todo-App',
+    demoUrl: 'https://admin-todo-mocha.vercel.app/',
+  },
+  {
+    id: 'todo-with-sdd',
+    name: 'todo-with-sdd',
+    description:
+      'Todo app construida siguiendo Spec-Driven Development (metodología Openspec): primero specs y tareas, después el código.',
+    tags: ['TypeScript', 'SDD'],
+    metrics: [{ label: 'Metodología', value: 'Spec-Driven Dev' }],
+    repoUrl: 'https://github.com/marcosdaniel97/todo-with-sdd',
+  },
+  {
+    id: 'nextjs-pokemon-dashboard',
+    name: 'nextjs-pokemon-dashboard',
+    description:
+      'Dashboard interactivo de Pokémon hecho con Next.js: consume una API externa y muestra stats, tipos y detalles con una interfaz responsive y optimizada.',
+    tags: ['Next.js', 'TypeScript', 'API REST'],
+    metrics: [
+      { label: 'Deploy', value: 'Vercel' },
+      { label: 'Data', value: 'PokeAPI' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/nextjs-pokemon-dashboard',
+    demoUrl: 'http://pokemon-dashboard-flame.vercel.app',
+  },
+  {
+    id: 'gifs-app',
+    name: 'gifs-app',
+    description:
+      'Buscador de GIFs que consume la API de Giphy, con testing unitario usando Vitest y React Testing Library.',
+    tags: ['React', 'Vitest', 'Testing Library'],
+    metrics: [
+      { label: 'Testing', value: 'Vitest + RTL' },
+      { label: 'API', value: 'Giphy' },
+    ],
+    repoUrl: 'https://github.com/marcosdaniel97/gifs-app',
+    demoUrl: 'https://soft-kataifi-dcc245.netlify.app/',
   },
 ];
