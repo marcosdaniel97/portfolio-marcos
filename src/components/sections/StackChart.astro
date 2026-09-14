@@ -1,0 +1,113 @@
+---
+// Bars are sized from real tag counts across projects + experience — no
+// self-rated percentages. Single accent hue: this is a magnitude-by-category
+// read, not an identity encoding, so one hue is correct (see dataviz skill's
+// color-formula: sequential/magnitude data gets one hue, not a rainbow).
+import SectionHeading from '../ui/SectionHeading.astro';
+import { projects } from '../../data/projects';
+import { experience } from '../../data/experience';
+
+const allTags = [...projects.flatMap((p) => p.tags), ...experience.flatMap((e) => e.tags)];
+
+const counts = new Map<string, number>();
+for (const tag of allTags) {
+  counts.set(tag, (counts.get(tag) ?? 0) + 1);
+}
+
+const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 9);
+const maxCount = ranked.length > 0 ? ranked[0][1] : 1;
+---
+
+<section id="stack" class="section reveal" aria-labelledby="stack-heading">
+  <SectionHeading index="04" glyph="$" headingId="stack-heading">analyze --stack-usage</SectionHeading>
+
+  <p class="stack-chart__intro">
+    Tecnologías más presentes en mi experiencia y proyectos, contadas directamente a partir de este mismo sitio.
+  </p>
+
+  <ul class="stack-chart" aria-label="Frecuencia de tecnologías en proyectos y experiencia">
+    {
+      ranked.map(([tag, count]) => (
+        <li class="stack-chart__row">
+          <span class="stack-chart__label">{tag}</span>
+          <span
+            class="stack-chart__track"
+            role="img"
+            aria-label={`${tag}: ${count} ${count === 1 ? 'proyecto' : 'proyectos'}`}
+          >
+            <span class="stack-chart__bar" style={`width: ${(count / maxCount) * 100}%`} />
+          </span>
+          <span class="stack-chart__value" aria-hidden="true">
+            {count} {count === 1 ? 'proyecto' : 'proyectos'}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .stack-chart__intro {
+    max-width: 60rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  .stack-chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    list-style: none;
+  }
+
+  .stack-chart__row {
+    display: grid;
+    grid-template-columns: 9rem 1fr auto;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+  }
+
+  .stack-chart__label {
+    overflow: hidden;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .stack-chart__track {
+    position: relative;
+    display: block;
+    height: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg-elevated);
+    overflow: hidden;
+  }
+
+  .stack-chart__bar {
+    display: block;
+    height: 100%;
+    min-width: 6px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-accent);
+  }
+
+  .stack-chart__value {
+    color: var(--color-text-muted);
+    font-size: var(--fs-100);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .stack-chart__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+
+    .stack-chart__value {
+      justify-self: start;
+    }
+  }
+</style>

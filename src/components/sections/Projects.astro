@@ -1,13 +1,15 @@
 ---
-import TerminalPrompt from '../ui/TerminalPrompt.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
 import ProjectCard from '../ui/ProjectCard.astro';
 import { projects } from '../../data/projects';
 ---
 
 <section id="projects" class="section reveal" aria-labelledby="projects-heading">
-  <h2 id="projects-heading" class="section__heading">
-    <TerminalPrompt glyph="$">./ejecutar_proyectos.sh</TerminalPrompt>
-  </h2>
+  <SectionHeading index="03" glyph="$" headingId="projects-heading">./ejecutar_proyectos.sh</SectionHeading>
+
+  <p class="projects__intro">
+    Proyectos personales y de práctica donde profundizo patrones, stacks y buenas prácticas por mi cuenta.
+  </p>
 
   <div class="projects__grid">
     {projects.map((project) => <ProjectCard project={project} />)}
@@ -15,6 +17,12 @@ import { projects } from '../../data/projects';
 </section>
 
 <style>
+  .projects__intro {
+    max-width: 60rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
   .projects__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

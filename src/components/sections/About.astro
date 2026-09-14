@@ -1,27 +1,26 @@
 ---
-import TerminalPrompt from '../ui/TerminalPrompt.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
 ---
 
 <section id="about" class="section reveal" aria-labelledby="about-heading">
-  <h2 id="about-heading" class="section__heading">
-    <TerminalPrompt glyph="$">cat about.txt</TerminalPrompt>
-  </h2>
+  <SectionHeading index="01" glyph="$" headingId="about-heading">cat about.txt</SectionHeading>
 
   <div class="about__content">
     <p>
-      Estoy estudiando Ingeniería en Software y me interesa el ciclo completo de desarrollo: entender bien el
-      problema, armar una arquitectura sólida y recién ahí escribir código. Construyo aplicaciones web completas con
-      React y Next.js, combinando SSR y CSR según lo que necesite cada pantalla.
+      Soy Analista Programador Universitario y estoy terminando Ingeniería en Informática en la UNJu. Trabajo como
+      desarrollador full stack freelance, construyendo soluciones de punta a punta -desde e-commerce con pagos
+      integrados hasta paneles de administración con roles y checkout- con React, Next.js y Node.js, combinando SSR
+      y CSR según lo que necesite cada pantalla.
     </p>
     <p>
-      Ya armé varios proyectos fullstack, entre ellos e-commerces con autenticación y pagos integrados, y un backend
-      con stack MERN que maneja autenticación JWT y estado con Redux. Trabajo tanto el frontend como el backend, y me
-      importa que las cosas funcionen de verdad, no solo que se vean bien.
+      Encaro los proyectos con metodologías Spec-Driven Development (SDD) y Test-Driven Development (TDD): primero
+      entender bien el problema y escribir specs y tareas, recién después tocar código. Uso flujos de trabajo
+      asistidos por agentes de IA (Claude Code, Gemini, OpenCode) para acelerar ese proceso sin perder rigurosidad.
     </p>
     <p>
-      Le doy bastante peso al testing (Vitest y React Testing Library) y a seguir procesos de desarrollo
-      estructurados: por ejemplo, hice un proyecto completo aplicando Spec-Driven Development, escribiendo specs y
-      tareas antes de tocar el código.
+      Trabajo tanto el frontend como el backend -Node.js, Express, NestJS- y le doy bastante peso al testing (Vitest
+      y React Testing Library). Soy adaptable, orientado al detalle y a la mejora continua, con foco en entregar
+      soluciones que resuelven problemas reales de negocio.
     </p>
   </div>
 </section>

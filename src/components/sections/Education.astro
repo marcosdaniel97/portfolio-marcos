@@ -1,24 +1,53 @@
 ---
-import TerminalPrompt from '../ui/TerminalPrompt.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { complementaryEducation, education } from '../../data/education';
 ---
 
 <section id="education" class="section reveal" aria-labelledby="education-heading">
-  <h2 id="education-heading" class="section__heading">
-    <TerminalPrompt glyph=">">education.log</TerminalPrompt>
-  </h2>
+  <SectionHeading index="05" glyph=">" headingId="education-heading">education.log</SectionHeading>
 
-  <p class="education__entry">
-    <span class="education__degree">Ingeniería en Software</span>
-    <span class="education__institution">Universidad Nacional de Jujuy (Argentina)</span>
-    <span class="education__dates">[ 2017 - Presente ]</span>
-  </p>
+  <ul class="education__list">
+    {
+      education.map((entry) => (
+        <li class="education__entry">
+          <span class="education__degree">{entry.degree}</span>
+          <span class="education__institution">{entry.institution}</span>
+          <span class="education__dates">[ {entry.dates} ]</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3 class="education__subheading">Educación complementaria</h3>
+  <ul class="education__complementary">
+    {
+      complementaryEducation.map((entry) => (
+        <li class="education__complementary-entry">
+          <span class="education__complementary-title">{entry.title}</span>
+          <span class="education__complementary-meta">
+            {entry.year ? `${entry.institution} · ${entry.year}` : entry.institution}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
 </section>
 
 <style>
+  .education__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    list-style: none;
+    margin-bottom: var(--space-10);
+  }
+
   .education__entry {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--color-border);
     font-family: var(--font-mono);
   }
 
@@ -34,5 +63,42 @@ import TerminalPrompt from '../ui/TerminalPrompt.astro';
   .education__dates {
     color: var(--color-accent);
     font-size: var(--fs-200);
+  }
+
+  .education__subheading {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--fs-400);
+    font-weight: 700;
+  }
+
+  .education__complementary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    list-style: none;
+  }
+
+  .education__complementary-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-200);
+  }
+
+  .education__complementary-entry:last-child {
+    border-bottom: none;
+  }
+
+  .education__complementary-title {
+    color: var(--color-text-primary);
+  }
+
+  .education__complementary-meta {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
   }
 </style>

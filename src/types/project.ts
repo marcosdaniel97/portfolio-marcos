@@ -16,4 +16,5 @@ export interface Project {
   readonly tags: readonly string[];
   readonly repoUrl?: string;
   readonly demoUrl?: string;
+  readonly image?: string;
 }

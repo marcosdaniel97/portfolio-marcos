@@ -1,0 +1,29 @@
+---
+// Shared section header: a decorative index number above the existing
+// terminal-prompt <h2>, matching the numbered-section convention common in
+// senior dev portfolios without abandoning the terminal aesthetic.
+import TerminalPrompt from './TerminalPrompt.astro';
+
+interface Props {
+  index: string;
+  glyph: string;
+  headingId: string;
+}
+
+const { index, glyph, headingId } = Astro.props;
+---
+
+<p class="section-heading__kicker" aria-hidden="true">{index}</p>
+<h2 id={headingId} class="section__heading">
+  <TerminalPrompt glyph={glyph}><slot /></TerminalPrompt>
+</h2>
+
+<style>
+  .section-heading__kicker {
+    margin-bottom: var(--space-2);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+    letter-spacing: 0.15em;
+  }
+</style>

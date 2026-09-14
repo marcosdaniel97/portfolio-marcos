@@ -1,0 +1,31 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import ExperienceCard from '../ui/ExperienceCard.astro';
+import { experience } from '../../data/experience';
+---
+
+<section id="experience" class="section reveal" aria-labelledby="experience-heading">
+  <SectionHeading index="02" glyph="$" headingId="experience-heading">cat experience.log</SectionHeading>
+
+  <p class="experience__intro">
+    Trabajo freelance y proyectos propios con cliente real o lógica de negocio compleja, desarrollados end-to-end.
+  </p>
+
+  <div class="experience__grid">
+    {experience.map((item) => <ExperienceCard experience={item} />)}
+  </div>
+</section>
+
+<style>
+  .experience__intro {
+    max-width: 60rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  .experience__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+</style>

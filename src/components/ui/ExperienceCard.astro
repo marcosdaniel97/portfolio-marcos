@@ -1,0 +1,178 @@
+---
+// Same conditional-link contract as ProjectCard: repoUrl -> "Repositorio",
+// demoUrl -> "Ver demo", isPrivate with no links -> a muted "Proyecto
+// privado" indicator instead of a dead/disabled button.
+import type { Experience } from '../../types/experience';
+import TagPill from './TagPill.astro';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience: item } = Astro.props;
+const hasLinks = Boolean(item.repoUrl ?? item.demoUrl);
+---
+
+<article class="experience-card">
+  <div class="experience-card__header">
+    <h3 class="experience-card__name">{item.name}</h3>
+    <p class="experience-card__meta">
+      {item.role} · <span class="experience-card__status">{item.status}</span>
+    </p>
+  </div>
+
+  <p class="experience-card__description">{item.description}</p>
+
+  {
+    item.methodology && (
+      <p class="experience-card__methodology">
+        Metodología: <span>{item.methodology}</span>
+      </p>
+    )
+  }
+
+  <ul class="experience-card__tags" aria-label={`Tecnologías usadas en ${item.name}`}>
+    {
+      item.tags.map((tag) => (
+        <li>
+          <TagPill>{tag}</TagPill>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="experience-card__actions">
+    {item.repoUrl && (
+      <a
+        class="experience-card__action"
+        href={item.repoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Repositorio de ${item.name}`}
+      >
+        Repositorio
+      </a>
+    )}
+    {item.demoUrl && (
+      <a
+        class="experience-card__action experience-card__action--primary"
+        href={item.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Ver demo de ${item.name}`}
+      >
+        Ver demo
+      </a>
+    )}
+    {!hasLinks && item.isPrivate && <span class="experience-card__private">Proyecto privado</span>}
+  </div>
+</article>
+
+<style>
+  .experience-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 100%;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+  }
+
+  .experience-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .experience-card__name {
+    font-size: var(--fs-500);
+    font-weight: 700;
+  }
+
+  .experience-card__meta {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+  }
+
+  .experience-card__status {
+    color: var(--color-accent);
+  }
+
+  .experience-card__description {
+    color: var(--color-text-muted);
+  }
+
+  .experience-card__methodology {
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
+    color: var(--color-text-muted);
+  }
+
+  .experience-card__methodology span {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .experience-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+  }
+
+  .experience-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    min-height: 44px;
+  }
+
+  .experience-card__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .experience-card__action:hover,
+  .experience-card__action:focus-visible {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .experience-card__action--primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg-base);
+  }
+
+  .experience-card__action--primary:hover,
+  .experience-card__action--primary:focus-visible {
+    background-color: var(--color-accent-dim);
+    border-color: var(--color-accent-dim);
+    color: var(--color-bg-base);
+  }
+
+  .experience-card__private {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-200);
+    font-style: italic;
+  }
+</style>

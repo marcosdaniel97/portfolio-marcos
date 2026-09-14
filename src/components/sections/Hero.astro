@@ -2,8 +2,9 @@
 import TerminalPrompt from '../ui/TerminalPrompt.astro';
 import TagPill from '../ui/TagPill.astro';
 
-const stack = ['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB'];
-const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
+const stack = ['React', 'Next.js', 'TypeScript', 'Node.js', 'NestJS'];
+const subtitle = 'Desarrollador Full Stack';
+const currentFocus = ['Spec-Driven Development', 'TDD', 'Orquestación de agentes de IA (Engram + Agent Teams Lite)'];
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
@@ -15,8 +16,10 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
     <h1 id="hero-heading" class="hero__name">Marcos Daniel Casimiro</h1>
 
     <p class="hero__subtitle-line">
-      <span class="hero__subtitle">Estudiante de Ingeniería en Software</span>
+      <span class="hero__subtitle">{subtitle}</span>
     </p>
+
+    <p class="hero__credentials">Analista Programador Universitario · Ingeniería en Informática (UNJu, en curso)</p>
 
     <ul class="hero__stack" aria-label="Stack principal">
       {
@@ -31,21 +34,21 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
     <div class="hero__ctas">
       <a class="hero__cta hero__cta--primary" href="#projects">Ver proyectos</a>
       <a class="hero__cta hero__cta--secondary" href="#contact">Contacto</a>
+      <a class="hero__cta hero__cta--tertiary" href="/cv/CV-Marcos-Casimiro.pdf" download>Descargar CV</a>
     </div>
 
     <p class="hero__learning">
-      <TerminalPrompt glyph="$">currently_learning: [{currentlyLearning.join(', ')}]</TerminalPrompt>
+      <TerminalPrompt glyph="$">current_focus: [{currentFocus.join(', ')}]</TerminalPrompt>
     </p>
   </div>
 </section>
 
-<style>
+<style define:vars={{ subtitleChars: subtitle.length }}>
   .hero {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100svh;
-    padding: var(--space-8) var(--space-6);
+    padding: var(--space-10) var(--space-6);
   }
 
   .hero__inner {
@@ -79,9 +82,9 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
     white-space: nowrap;
     border-right: 2px solid var(--color-accent);
     font-family: var(--font-mono);
-    width: 36ch;
+    width: calc(var(--subtitleChars) * 1ch);
     animation:
-      hero-typing 2.4s steps(36, end) 0.3s both,
+      hero-typing 1.6s steps(var(--subtitleChars), end) 0.3s both,
       hero-caret 750ms step-end infinite;
   }
 
@@ -90,7 +93,7 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
       width: 0;
     }
     to {
-      width: 36ch;
+      width: calc(var(--subtitleChars) * 1ch);
     }
   }
 
@@ -106,10 +109,16 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
 
   @media (prefers-reduced-motion: reduce) {
     .hero__subtitle {
-      width: 36ch;
+      width: calc(var(--subtitleChars) * 1ch);
       animation: none;
       border-right-color: transparent;
     }
+  }
+
+  .hero__credentials {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-100);
   }
 
   .hero__stack {
@@ -122,6 +131,7 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
   .hero__ctas {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-4);
     margin-top: var(--space-2);
   }
@@ -159,6 +169,19 @@ const currentlyLearning = ['Go', 'AWS Cloud Practitioner', 'Docker'];
   .hero__cta--secondary:hover,
   .hero__cta--secondary:focus-visible {
     border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .hero__cta--tertiary {
+    padding-inline: var(--space-2);
+    color: var(--color-text-muted);
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .hero__cta--tertiary:hover,
+  .hero__cta--tertiary:focus-visible {
     color: var(--color-accent);
   }
 
